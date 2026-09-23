@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>매출 대시보드</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="viz-root">
+    <header class="top">
+      <div>
+        <h1>매출 대시보드</h1>
+        <p class="sub" id="range-label"></p>
+      </div>
+      <button type="button" id="theme-toggle" class="btn" aria-label="테마 전환">테마: 자동</button>
+    </header>
+
+    <section class="filters" aria-label="필터">
+      <label>기간
+        <select id="f-period">
+          <option value="3">최근 3개월</option>
+          <option value="6">최근 6개월</option>
+          <option value="12" selected>최근 12개월</option>
+          <option value="24">최근 24개월</option>
+        </select>
+      </label>
+      <label>지역
+        <select id="f-region"></select>
+      </label>
+      <label>카테고리
+        <select id="f-category"></select>
+      </label>
+    </section>
+
+    <section class="kpis" id="kpis" aria-label="핵심 지표"></section>
+
+    <section class="grid">
+      <article class="card span-2">
+        <h2>채널별 월 매출</h2>
+        <p class="card-sub">온라인 · 매장 · 파트너</p>
+        <div class="legend" id="legend-line"></div>
+        <div class="chart" id="chart-line"></div>
+        <details><summary>표로 보기</summary><div id="table-line" class="table-wrap"></div></details>
+      </article>
+
+      <article class="card">
+        <h2>카테고리별 매출</h2>
+        <p class="card-sub">선택 기간 합계</p>
+        <div class="chart" id="chart-category"></div>
+      </article>
+
+      <article class="card">
+        <h2>지역별 매출</h2>
+        <p class="card-sub">채널 구성</p>
+        <div class="legend" id="legend-region"></div>
+        <div class="chart" id="chart-region"></div>
+        <details><summary>표로 보기</summary><div id="table-region" class="table-wrap"></div></details>
+      </article>
+
+      <article class="card span-2">
+        <h2>최근 주문</h2>
+        <div class="table-wrap" id="orders"></div>
+      </article>
+    </section>
+  </div>
+  <div id="tooltip" class="tooltip" role="status" hidden></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
