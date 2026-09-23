@@ -1,0 +1,168 @@
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.10);
+  --hover: rgba(11, 11, 11, 0.04);
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --delta-up: #006300;
+  --delta-down: #b42828;
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
+  --font: system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.10);
+    --hover: rgba(255, 255, 255, 0.05);
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --delta-up: #0ca30c;
+    --delta-down: #e66767;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface-1: #1a1a19;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.10);
+  --hover: rgba(255, 255, 255, 0.05);
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --delta-up: #0ca30c;
+  --delta-down: #e66767;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.viz-root { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+
+.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+h1 { font-size: 22px; font-weight: 600; margin: 0; }
+h2 { font-size: 15px; font-weight: 600; margin: 0; }
+.sub, .card-sub { color: var(--text-secondary); margin: 2px 0 0; }
+.card-sub { font-size: 13px; }
+
+.btn, select {
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.btn { white-space: nowrap; }
+.top-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; }
+.user { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); }
+.user[hidden] { display: none; }
+.user form { margin: 0; }
+.user img { border-radius: 50%; object-fit: cover; }
+.btn:hover, select:hover { background: var(--hover); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 16px; }
+.filters label { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); }
+
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
+.kpi, .card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 0;
+}
+.kpi .label { color: var(--text-secondary); font-size: 13px; }
+.kpi .value { font-size: 28px; font-weight: 600; margin: 4px 0 2px; }
+.kpi.hero .value { font-size: 48px; line-height: 1.1; }
+.kpi .delta { font-size: 13px; color: var(--text-secondary); }
+.kpi .delta b { font-weight: 600; }
+.kpi .delta .up { color: var(--delta-up); }
+.kpi .delta .down { color: var(--delta-down); }
+.kpi svg { display: block; margin-top: 8px; width: 100%; height: 32px; }
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.span-2 { grid-column: span 2; }
+.chart { position: relative; margin-top: 8px; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; color: var(--text-secondary); font-size: 13px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { display: inline-block; width: 14px; height: 2px; border-radius: 1px; }
+.legend i.box { width: 10px; height: 10px; border-radius: 2px; }
+
+.axis text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.baseline { stroke: var(--axis); stroke-width: 1; }
+.lbl { fill: var(--text-secondary); font-size: 12px; }
+.lbl-strong { fill: var(--text-primary); font-size: 12px; font-weight: 600; }
+.mark { transition: opacity .12s; }
+.mark:hover, .mark:focus { opacity: .8; outline: none; }
+.dim { opacity: .35; }
+
+details { margin-top: 10px; }
+summary { cursor: pointer; color: var(--text-secondary); font-size: 13px; }
+.table-wrap { overflow-x: auto; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th { color: var(--text-secondary); font-weight: 500; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.status { display: inline-flex; align-items: center; gap: 6px; }
+.status .ico {
+  display: inline-grid; place-items: center;
+  width: 16px; height: 16px; border-radius: 50%;
+  font-size: 10px; font-weight: 700; color: #0b0b0b;
+}
+
+.tooltip {
+  position: fixed; z-index: 10; pointer-events: none;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  padding: 8px 10px; font-size: 12px; min-width: 140px;
+}
+.tooltip .t-title { color: var(--text-secondary); margin-bottom: 4px; }
+.tooltip .row { display: flex; align-items: center; gap: 8px; }
+.tooltip .row i { width: 12px; height: 2px; border-radius: 1px; flex: none; }
+.tooltip .row b { font-weight: 600; color: var(--text-primary); }
+.tooltip .row span { color: var(--text-secondary); }
+
+@media (max-width: 860px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .span-2 { grid-column: auto; }
+  .kpi.hero .value { font-size: 36px; }
+}
+@media (max-width: 480px) {
+  .kpis { grid-template-columns: minmax(0, 1fr); }
+}
