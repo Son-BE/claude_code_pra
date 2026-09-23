@@ -429,10 +429,28 @@
     apply();
   }
 
+  // 로그인 사용자 표시 (서버 없이 파일로 열면 조용히 건너뜀)
+  function initUser() {
+    if (location.protocol === 'file:') return;
+    fetch('/api/me', { headers: { Accept: 'application/json' } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((me) => {
+        if (!me) return;
+        $('user-name').textContent = me.name;
+        if (me.avatar && /^https:\/\//.test(me.avatar)) {
+          $('user-avatar').src = me.avatar;
+          $('user-avatar').hidden = false;
+        }
+        $('user').hidden = false;
+      })
+      .catch(() => {});
+  }
+
   let rt;
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 120); });
 
   initTheme();
+  initUser();
   initFilters();
   render();
 })();

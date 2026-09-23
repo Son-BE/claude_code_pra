@@ -13,7 +13,14 @@
         <h1>매출 대시보드</h1>
         <p class="sub" id="range-label"></p>
       </div>
-      <button type="button" id="theme-toggle" class="btn" aria-label="테마 전환">테마: 자동</button>
+      <div class="top-actions">
+        <div class="user" id="user" hidden>
+          <img id="user-avatar" alt="" width="28" height="28" hidden />
+          <span id="user-name"></span>
+          <form method="post" action="/auth/logout"><button type="submit" class="btn">로그아웃</button></form>
+        </div>
+        <button type="button" id="theme-toggle" class="btn" aria-label="테마 전환">테마: 자동</button>
+      </div>
     </header>
 
     <section class="filters" aria-label="필터">

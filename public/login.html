@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>로그인 · 매출 대시보드</title>
+  <link rel="stylesheet" href="/public/login.css" />
+</head>
+<body>
+  <main class="login">
+    <h1>매출 대시보드</h1>
+    <p class="sub">소셜 계정으로 로그인하세요.</p>
+    <p class="error" id="error" role="alert" hidden></p>
+    <div class="providers" id="providers"></div>
+    <p class="empty" id="empty" hidden>설정된 로그인 제공자가 없습니다. 서버의 <code>.env</code>를 확인하세요.</p>
+  </main>
+  <script src="/public/login.js"></script>
+</body>
+</html>

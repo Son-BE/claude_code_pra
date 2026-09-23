@@ -1,0 +1,59 @@
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --border: rgba(11, 11, 11, 0.10);
+  --error-bg: #fbeaea;
+  --error-text: #9b1c1c;
+  --font: system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --border: rgba(255, 255, 255, 0.10);
+    --error-bg: #3a1a1a;
+    --error-text: #f0a0a0;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface-1: #1a1a19;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --border: rgba(255, 255, 255, 0.10);
+  --error-bg: #3a1a1a;
+  --error-text: #f0a0a0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px;
+  background: var(--page); color: var(--text-primary); font-family: var(--font); font-size: 14px;
+}
+.login {
+  width: 100%; max-width: 360px; padding: 32px 24px;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 16px;
+}
+h1 { margin: 0; font-size: 22px; font-weight: 600; }
+.sub { margin: 4px 0 24px; color: var(--text-secondary); }
+.providers { display: grid; gap: 10px; }
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 48px; border-radius: 10px; font-size: 15px; font-weight: 600;
+  text-decoration: none; border: 1px solid transparent;
+}
+.btn:focus-visible { outline: 2px solid #2a78d6; outline-offset: 2px; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn.google { background: #ffffff; color: #1f1f1f; border-color: #dadce0; }
+.btn.kakao { background: #fee500; color: rgba(0, 0, 0, 0.85); }
+.btn.naver { background: #03c75a; color: #ffffff; }
+.btn:hover { filter: brightness(0.96); }
+.error { margin: 0 0 16px; padding: 10px 12px; border-radius: 8px; background: var(--error-bg); color: var(--error-text); }
+.empty { color: var(--text-secondary); }
+code { font-size: 13px; }
